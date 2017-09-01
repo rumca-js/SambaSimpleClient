@@ -7,10 +7,10 @@ Samba simple client. GUI frontend for mount
 3. Use /mnt/samba directory for all shares.
 
 ## Server syntax:
-\\ip\_number\Share\_name
+\\\\ip\_number\Share\_name
 
 ## TODO
-Help button
-support server smb:// syntax.
+* Help button
+* support server smb:// syntax.
 
 
