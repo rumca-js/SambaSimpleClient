@@ -19,7 +19,7 @@ May be executed from every path by running samba-simple-client-qt.
 \\\\ip\_number\Share\_name
 
 ## Licensing
-In case of any fork the developer needs to provide information about the author: name and email.
+In case of any fork the developer needs to provide information about the author: name and email (Piotr Zieliński, rozbujnik@gmail.com).
 
 ## TODO
 * Help button
