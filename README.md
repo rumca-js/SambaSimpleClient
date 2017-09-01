@@ -24,5 +24,6 @@ In case of any fork the developer needs to provide information about the author:
 ## TODO
 * Help button
 * support server smb:// syntax.
+* Unmounting should remove directory from /mnt/samba/
 
 
