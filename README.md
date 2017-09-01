@@ -9,6 +9,9 @@ Samba simple client. GUI frontend for mount
 ## Server syntax:
 \\\\ip\_number\Share\_name
 
+## Licensing
+In case of any fork the developer needs to provide information about the author: name and email.
+
 ## TODO
 * Help button
 * support server smb:// syntax.
