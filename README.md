@@ -5,7 +5,7 @@ Samba simple client. GUI frontend for mount.
 Requires QT Creator for QT.5.
 
 ## Installation
-Build & copy samba-simple-client-qt and samba-simple-client-qt-gui to /usr/local/bin.
+Build samba-simple-client-qt-gui and copy it with samba-simple-client-qt and to /usr/local/bin.
 
 ## Execution
 May be executed from every path by running samba-simple-client-qt.
