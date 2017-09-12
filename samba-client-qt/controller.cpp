@@ -9,6 +9,7 @@ mainwindowcontroller::mainwindowcontroller(QObject *parent) : QObject(parent)
     configuration = new Configuration(parent);
 
     window = new MainWindow();
+    window->updateLastItems(configuration->getLastItems() );
 
     window->setWorkGroup(configuration->workgroup);
 
@@ -37,7 +38,14 @@ void mainwindowcontroller::onMountButton()
     if (!this->isShareMounted(&data))
     {
         window->debug( this->mount(&data) );
-        window->updateMountIndication(this->isShareMounted(&data));
+        bool ismounted = this->isShareMounted(&data);
+        window->updateMountIndication(ismounted);
+
+        if (ismounted)
+        {
+            configuration->addItem(data.full_share);
+            window->updateLastItems(configuration->getLastItems());
+        }
     }
     else
     {

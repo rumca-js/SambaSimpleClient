@@ -8,6 +8,7 @@
 #include <QListWidget>
 #include <QGridLayout>
 #include <QCheckBox>
+#include <QComboBox>
 
 #include "configuration.h"
 
@@ -38,11 +39,13 @@ public:
     QString getUserName();
     QString getUserPassword();
     QString getAdvancedOptions();
+    void updateLastItems(QStringList items);
 
 private:
     Ui::MainWindow *ui;
     QGridLayout* thisWindowLayout;
 
+    QComboBox   * comboItems     = new QComboBox();
     QTextEdit   * debug_text     = new QTextEdit();
     QLineEdit   * editWorkGroup  = new QLineEdit();
     QLineEdit   * editMountPoint  = new QLineEdit();
@@ -58,6 +61,7 @@ private:
 private slots:
     void onChangedServer(QString text);
     void onUseLogin(int login);
+    void onChangeLastItem(QString);
 
 signals:
     void onMountButton();

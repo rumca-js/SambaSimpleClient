@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mount = new QPushButton(WT_MOUNT);
 
+    thisWindowLayout->addWidget(new QLabel("Last mounted items"));
+    thisWindowLayout->addWidget(comboItems);
+
     thisWindowLayout->addWidget(new QLabel("Samba resource path"));
     thisWindowLayout->addWidget(editServer);
 
@@ -46,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(editServer,     SIGNAL(textChanged(QString)), this, SLOT(onChangedServer(QString)));
     connect(editMountPoint, SIGNAL(textChanged(QString)),  this, SIGNAL(changedServer(QString)));
     connect(checkLogin,     SIGNAL(stateChanged(int)),    this, SLOT(onUseLogin(int)));
+    connect(comboItems,     SIGNAL(activated(QString)),   this, SLOT(onChangeLastItem(QString)));
 
     emit checkLogin->stateChanged(0);
 
@@ -137,4 +141,15 @@ QString MainWindow::getUserPassword()
 QString MainWindow::getAdvancedOptions()
 {
     return editAdvancedOptions->text();
+}
+
+void MainWindow::updateLastItems(QStringList items)
+{
+    comboItems->clear();
+    comboItems->addItems(items);
+}
+
+void MainWindow::onChangeLastItem(QString item)
+{
+    editServer->setText((item));
 }

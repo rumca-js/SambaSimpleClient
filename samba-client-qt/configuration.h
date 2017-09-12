@@ -16,6 +16,12 @@ public:
     ~Configuration();
 
     QString workgroup;
+    QStringList lastItems;
+    QString configLocation = "/usr/local/etc/samba-simple.conf";
+
+    void addItem(QString);
+    QStringList getLastItems();
+    bool save();
 
 signals:
 
