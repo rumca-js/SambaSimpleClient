@@ -17,6 +17,10 @@ class mainwindowcontroller : public QObject
 public:
     explicit mainwindowcontroller(QObject *parent = 0);
 
+    QString mount(SambaShareData * data);
+    QString unmount(SambaShareData * data);
+    bool isShareMounted(SambaShareData * data);
+
 public slots:
     void onMountButton();
     void onChangedServer(QString text);

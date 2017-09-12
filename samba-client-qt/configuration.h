@@ -15,10 +15,6 @@ public:
     explicit Configuration(QObject *parent = 0);
     ~Configuration();
 
-    QString mount(SambaShareData * data);
-    QString unmount(SambaShareData * data);
-    bool isShareMounted(SambaShareData * data);
-
     QString workgroup;
 
 signals:
