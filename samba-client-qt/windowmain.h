@@ -9,6 +9,7 @@
 #include <QGridLayout>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QLabel>
 
 #include "configuration.h"
 
@@ -40,6 +41,7 @@ public:
     QString getUserPassword();
     QString getAdvancedOptions();
     void updateLastItems(QStringList items);
+    void setAdvanced(bool);
 
 private:
     Ui::MainWindow *ui;
@@ -54,14 +56,22 @@ private:
     QLineEdit   * editPassword  = new QLineEdit();
     QLineEdit   * editAdvancedOptions = new QLineEdit();
 
+    QLabel * lab_workgorup = new QLabel("WorkGroup");
+    QLabel * lab_user = new QLabel("UserName");
+    QLabel * lab_pass = new QLabel("Password");
+    QLabel * lab_adv = new QLabel("Advanced mount options");
+
     QCheckBox * checkLogin = new QCheckBox("Use Login");
 
     QPushButton * mount;
+    QPushButton * buttonAdvanced = new QPushButton("Advanced Options");
+    bool advanced;
 
 private slots:
     void onChangedServer(QString text);
     void onUseLogin(int login);
     void onChangeLastItem(QString);
+    void onAdvanced();
 
 signals:
     void onMountButton();

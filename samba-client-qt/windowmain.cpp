@@ -28,20 +28,22 @@ MainWindow::MainWindow(QWidget *parent) :
     thisWindowLayout->addWidget(new QLabel("Mount Point"));
     thisWindowLayout->addWidget(editMountPoint);
 
-    thisWindowLayout->addWidget(new QLabel("WorkGroup"));
+    thisWindowLayout->addWidget(lab_workgorup);
     thisWindowLayout->addWidget(editWorkGroup);
 
     thisWindowLayout->addWidget(checkLogin);
 
-    thisWindowLayout->addWidget(new QLabel("UserName"));
+    thisWindowLayout->addWidget(lab_user);
     thisWindowLayout->addWidget(editLogin);
-    thisWindowLayout->addWidget(new QLabel("Password"));
+    thisWindowLayout->addWidget(lab_pass);
     thisWindowLayout->addWidget(editPassword);
 
-    thisWindowLayout->addWidget(new QLabel("Advanced mount options"));
+    thisWindowLayout->addWidget(lab_adv);
     thisWindowLayout->addWidget(editAdvancedOptions);
 
     thisWindowLayout->addWidget(mount);
+
+    thisWindowLayout->addWidget(buttonAdvanced);
 
     thisWindowLayout->addWidget(debug_text);
 
@@ -50,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(editMountPoint, SIGNAL(textChanged(QString)),  this, SIGNAL(changedServer(QString)));
     connect(checkLogin,     SIGNAL(stateChanged(int)),    this, SLOT(onUseLogin(int)));
     connect(comboItems,     SIGNAL(activated(QString)),   this, SLOT(onChangeLastItem(QString)));
+    connect(buttonAdvanced, SIGNAL(released()),        this, SLOT(onAdvanced()));
 
     emit checkLogin->stateChanged(0);
 
@@ -67,6 +70,40 @@ void MainWindow::setWorkGroup(QString workgroup)
 {
     editWorkGroup->setText(workgroup);
 }
+
+void MainWindow::onAdvanced()
+{
+    advanced = !advanced;
+
+    setAdvanced(advanced);
+}
+
+void MainWindow::setAdvanced(bool adv)
+{
+    advanced = adv;
+    lab_workgorup->setVisible(advanced);
+    editWorkGroup->setVisible(advanced);
+
+    checkLogin->setVisible(advanced);
+    lab_user->setVisible(advanced);
+    editLogin->setVisible(advanced);
+    lab_pass->setVisible(advanced);
+    editPassword->setVisible(advanced);
+
+    lab_adv->setVisible(advanced);
+    editAdvancedOptions->setVisible(advanced);
+    debug_text->setVisible(advanced);
+
+    if (advanced)
+    {
+        buttonAdvanced->setText("Hide Advanced");
+    }
+    else
+    {
+        buttonAdvanced->setText("Show Advanced");
+    }
+}
+
 QString MainWindow::getWorkGroup()
 {
     return editWorkGroup->text();
@@ -98,12 +135,20 @@ QString MainWindow::getMountPoint()
 
 QString MainWindow::getServer()
 {
-    return editServer->text();
+    QString text(editServer->text());
+    if (text.count("smb://") > 0)
+    {
+        text.replace("smb://", "\\\\");
+        text.replace("/","\\");
+    }
+    return text;
 }
 
 void MainWindow::onChangedServer(QString text)
 {
     text.replace('\\','_');
+    text.replace("smb://", "__");
+    text.replace('/','_');
     editMountPoint->setText("/mnt/samba/"+text);
 }
 

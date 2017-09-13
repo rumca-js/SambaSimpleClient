@@ -22,6 +22,7 @@ public:
     void addItem(QString);
     QStringList getLastItems();
     bool save();
+    bool advanced;
 
 signals:
 

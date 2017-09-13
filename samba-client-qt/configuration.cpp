@@ -8,6 +8,7 @@
 Configuration::Configuration(QObject *parent) : QObject(parent)
 {
     workgroup = "WORKGROUP";
+    advanced = false;
 
     QFile file(configLocation);
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text))

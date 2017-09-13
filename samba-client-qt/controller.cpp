@@ -13,6 +13,8 @@ mainwindowcontroller::mainwindowcontroller(QObject *parent) : QObject(parent)
 
     window->setWorkGroup(configuration->workgroup);
 
+    window->setAdvanced(configuration->advanced);
+
     window->show();
 
     connect(window, SIGNAL(onMountButton()), this, SLOT(onMountButton()));
